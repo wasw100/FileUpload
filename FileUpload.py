@@ -8,7 +8,6 @@ import threading
 import time
 import functools
 import zlib
-import urlparse
 import mimetypes
 import codecs
 try:
@@ -24,8 +23,10 @@ is_before_py26 = (is_py2 and _ver[1] <= 6)
 
 if is_py2:
     text_type = unicode
+    from urlparse import urlparse
 elif is_py3:
     text_type = str
+    from urllib.parse import urlparse
 
 if is_before_py26:
     from StringIO import StringIO as BytesIO
@@ -71,7 +72,7 @@ class FileUploadCommand(sublime_plugin.TextCommand):
 
 def handle_url(url):
     """如果url的path是'', 后面加上'/'"""
-    parsed = urlparse.urlparse(url)
+    parsed = urlparse(url)
     if not parsed.path:
         parsed = parsed._replace(path='/')
     return parsed.geturl()
