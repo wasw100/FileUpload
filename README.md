@@ -3,6 +3,8 @@ Sublime Plugin: FileUpload
 
 ## Sublime插件安装步骤
 
+- Install [Package Control](https://packagecontrol.io/installation)
+
 - Add Repository
 
     ```
