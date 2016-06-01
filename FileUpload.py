@@ -10,10 +10,6 @@ import functools
 import zlib
 import mimetypes
 import codecs
-try:
-    import urllib.request as urllib2
-except:
-    import urllib2
 
 _ver = sys.version_info
 
@@ -23,9 +19,11 @@ is_before_py26 = (is_py2 and _ver[1] <= 6)
 
 if is_py2:
     text_type = unicode
+    import urllib2
     from urlparse import urlparse
 elif is_py3:
     text_type = str
+    import urllib.request as urllib2
     from urllib.parse import urlparse
 
 if is_before_py26:
